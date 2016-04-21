@@ -1,0 +1,66 @@
+﻿@model NetPress.Models.Posts
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Posts</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.content)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.content)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastModified)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastModified)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.postID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

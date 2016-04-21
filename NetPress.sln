@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetPress", "NetPress\NetPress.csproj", "{EF3F9A1C-C37E-405A-AD7D-CD2C96B922D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetPress.Tests", "NetPress.Tests\NetPress.Tests.csproj", "{2024281A-278C-40B8-915A-62C2B87EAD3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF3F9A1C-C37E-405A-AD7D-CD2C96B922D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF3F9A1C-C37E-405A-AD7D-CD2C96B922D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF3F9A1C-C37E-405A-AD7D-CD2C96B922D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF3F9A1C-C37E-405A-AD7D-CD2C96B922D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2024281A-278C-40B8-915A-62C2B87EAD3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2024281A-278C-40B8-915A-62C2B87EAD3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2024281A-278C-40B8-915A-62C2B87EAD3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2024281A-278C-40B8-915A-62C2B87EAD3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
