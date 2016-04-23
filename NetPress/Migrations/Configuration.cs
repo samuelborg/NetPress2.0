@@ -1,6 +1,8 @@
 namespace NetPress.Migrations
 {
+    using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -32,6 +34,9 @@ namespace NetPress.Migrations
                 new IdentityRole { Name = "Admin" },
                 new IdentityRole { Name = "Author" }
                 );
+
+            //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            //UserManager.AddToRole("USERID","USERROLE");
         }
     }
 }
