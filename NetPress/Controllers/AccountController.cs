@@ -151,7 +151,7 @@ namespace NetPress.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name, Surname = model.Surname, MemberSince = DateTime.Now };
+                var user = new ApplicationUser { UserName = model.Name, Email = model.Email, Name = model.Name, Surname = model.Surname, MemberSince = DateTime.Now };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

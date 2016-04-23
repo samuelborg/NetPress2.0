@@ -29,6 +29,9 @@
         <th>
             @Html.DisplayNameFor(model => model.lastModified)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
         <th></th>
     </tr>
 
@@ -52,6 +55,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.lastModified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.postID }) |

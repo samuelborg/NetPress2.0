@@ -59,7 +59,9 @@
                     @Html.ValidationMessageFor(model => model.dateCreated, "", new { @class = "text-danger" })
                 </div>
             </div>*@
-        @Html.Hidden("model.dateCreated")
+        @Html.HiddenFor(model => model.dateCreated)
+
+        @*@Html.Hidden("model.dateCreated")*@
 
         @*<div class="form-group">
                 @Html.LabelFor(model => model.lastModified, htmlAttributes: new { @class = "control-label col-md-2" })

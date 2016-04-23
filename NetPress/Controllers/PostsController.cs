@@ -7,13 +7,16 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NetPress.Models;
+using Microsoft.AspNet.Identity;
 
 namespace NetPress.Controllers
 {
+    [Authorize]
+
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        [AllowAnonymous]
         // GET: Post
         public ActionResult Index()
         {
@@ -21,6 +24,8 @@ namespace NetPress.Controllers
         }
 
         // GET: Post/Details/5
+        [AllowAnonymous]
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -51,6 +56,10 @@ namespace NetPress.Controllers
         {
             posts.dateCreated = DateTime.Now;
             posts.lastModified = DateTime.Now;
+
+            //var UserID = User.Identity.GetUserId;
+
+            posts.UserID = User.Identity.GetUserId();
             if (ModelState.IsValid)
             {
                 db.Posts.Add(posts);
@@ -84,18 +93,32 @@ namespace NetPress.Controllers
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
 
-        public ActionResult Edit([Bind(Include = "postID,title,content,category,status,dateCreated,lastModified")] Posts posts)
+        public ActionResult Edit(Posts posts)
         {
             if (ModelState.IsValid)
             {
+
                 posts.lastModified = DateTime.Now;
-                posts.dateCreated = posts.dateCreated;
+                //posts.dateCreated = posts.dateCreated;
                 db.Entry(posts).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(posts);
         }
+
+        //public ActionResult Edit([Bind(Include = "postID,title,content,category,status,dateCreated,lastModified")] Posts posts)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        posts.lastModified = DateTime.Now;
+        //        //posts.dateCreated = posts.dateCreated;
+        //        db.Entry(posts).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(posts);
+        //}
 
         // GET: Post/Delete/5
         public ActionResult Delete(int? id)
