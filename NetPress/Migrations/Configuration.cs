@@ -35,8 +35,13 @@ namespace NetPress.Migrations
                 new IdentityRole { Name = "Author" }
                 );
 
+            //context.Users.AddOrUpdate(u => u.Id,
+            //   new Models.ApplicationUser { Id="1",Email = "matxuereb@hotmail.co.uk",Name="Matthew",Surname="Xuereb",MemberSince=DateTime.Now,PasswordHash="Hello"}
+            //   );
+                
+                
             //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            //UserManager.AddToRole("USERID","USERROLE");
+            //UserManager.AddToRole("1","Admin");
         }
     }
 }
