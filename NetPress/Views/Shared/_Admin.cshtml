@@ -12,6 +12,9 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
     @Styles.Render("~/Content/Admin/css")
+ 
+
+
     @*    @Styles.Render("~/Content/Admin/less")
          @Styles.Render("~/Content/Admin/scss")
 
@@ -50,21 +53,27 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="#"><i class="fa fa-fw fa-home"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="#"><i class="fa fa-fw fa-pencil-square-o"></i> Create Post</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-folder-o"></i> Your Posts <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="#">Draft Posts</a>
                             </li>
                             <li>
-                                <a href="#">Dropdown Item</a>
+                                <a href="#">Published Posts</a>
+                            </li>
+                            <li>
+                                <a href="#">Archived Posts</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                        <a href="blank-page.html"><i class="fa fa-fw fa-key"></i> Change Password</a>
                     </li>
                 </ul>
             </div>

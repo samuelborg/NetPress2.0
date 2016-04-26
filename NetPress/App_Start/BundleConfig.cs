@@ -38,7 +38,9 @@ namespace NetPress
                    "~/Content/Admin/css/font-awesome*",
                    "~/Content/Admin/sb-admin.css",
                     "~/Content/Admin/fonts/fontawesome-*",
-                    "~/Content/Admin/fonts/Fontawesome.otf"
+                    "~/Content/Admin/fonts/Fontawesome.otf",
+                    "~/Content/Admin/Site.css"
+
                     ));
 
             bundles.Add(new StyleBundle("~/Content/Admin/less").
