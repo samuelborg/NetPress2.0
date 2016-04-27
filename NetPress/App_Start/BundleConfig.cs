@@ -50,10 +50,10 @@ namespace NetPress
                 IncludeDirectory("~/Content/Admin/scss/", "*.scss", true));
 
             bundles.Add(new StyleBundle("~/Content/Home/css").Include(
-                     "~/Content/Home/bootstrap.css",
-                     "~/Content/Home/bootstrap.min.css",
-                   "~/Content/Home/blog-home.css",
-                     "~/Content/Home/fonts/glyphicons-*"
+                     "~/Content/Home/css/bootstrap.css",
+                     "~/Content/Home/css/bootstrap.min.css",
+                   "~/Content/Home/css/blog-home.css"
+
                       ));
         }
     }

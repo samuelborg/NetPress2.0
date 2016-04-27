@@ -16,12 +16,35 @@ namespace NetPress.Controllers
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        public static List<Posts> postList = new List<Posts>();
+
         [AllowAnonymous]
         // GET: Post
-        public ActionResult Index()
+
+        public ActionResult Index(string searchString, string searchID)
         {
-            return View(db.Posts.ToList());
+            postList.Clear();
+            IList<Posts> posts = db.Posts.ToList();
+          
+            if(searchString!= null)
+            {
+                posts = posts.Where(p => p.category.Contains(searchString)).ToList();
+           
+            }
+            if (searchID != null)
+            {
+                posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
+
+            }
+
+            return View(posts);
         }
+
+
+        //public ActionResult Index()
+        //{
+        //    return View(db.Posts.ToList());
+        //}
 
         // GET: Post/Details/5
         [AllowAnonymous]
@@ -99,26 +122,12 @@ namespace NetPress.Controllers
             {
 
                 posts.lastModified = DateTime.Now;
-                //posts.dateCreated = posts.dateCreated;
                 db.Entry(posts).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(posts);
         }
-
-        //public ActionResult Edit([Bind(Include = "postID,title,content,category,status,dateCreated,lastModified")] Posts posts)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        posts.lastModified = DateTime.Now;
-        //        //posts.dateCreated = posts.dateCreated;
-        //        db.Entry(posts).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(posts);
-        //}
 
         // GET: Post/Delete/5
         public ActionResult Delete(int? id)

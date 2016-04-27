@@ -43,8 +43,8 @@
             <div class="col-md-8">
 
                 <h1 class="page-header">
-                    Main Title here foo
-                    <small>Tiny ass text next to title</small>
+                    Posts Section
+                    @*<small>Tiny ass text next to title</small>*@
                 </h1>
 
                 <!-- First Blog Post -->
@@ -68,14 +68,21 @@
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
+                    @using (Html.BeginForm("Index", "Posts", FormMethod.Get))
+                    {
                     <div class="input-group">
-                        <input type="text" class="form-control">
-                        <span class="input-group-btn">
+                        
+                            @Html.TextBox("searchString")
+
+                            <input type="submit" class="form-control" value="Search">
+                        
+                        @*<span class="input-group-btn">
                             <button class="btn btn-default" type="button">
-                                <span class="glyphicon glyphicon-search"></span>
+                                   <span class="glyphicon glyphicon-search"></span>
                             </button>
-                        </span>
+                        </span>*@
                     </div>
+                    }
                     <!-- /.input-group -->
                 </div>
 

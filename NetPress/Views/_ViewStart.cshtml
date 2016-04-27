@@ -6,7 +6,7 @@
 @{
     var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Controller"].ToString();
     string cLayout = "";
-    if (controller == "Account")
+    if ((controller == "Account")|| (controller == "Manage"))
     {
         cLayout = "~/Views/Shared/_Admin.cshtml";
     }
