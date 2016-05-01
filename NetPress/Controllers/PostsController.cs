@@ -16,16 +16,17 @@ namespace NetPress.Controllers
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public static List<Posts> postList = new List<Posts>();
 
         [AllowAnonymous]
         // GET: Post
 
         public ActionResult Index(string searchString, string searchID)
         {
-            postList.Clear();
             IList<Posts> posts = db.Posts.ToList();
-          
+
+            posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
+
+
             if(searchString!= null)
             {
                 posts = posts.Where(p => p.category.Contains(searchString)).ToList();
@@ -48,7 +49,6 @@ namespace NetPress.Controllers
 
         // GET: Post/Details/5
         [AllowAnonymous]
-
         public ActionResult Details(int? id)
         {
             if (id == null)

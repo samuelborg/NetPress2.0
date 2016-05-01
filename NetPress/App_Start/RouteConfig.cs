@@ -13,6 +13,17 @@ namespace NetPress
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+         //   routes.MapRoute(
+         //    name: "SearchCategory",
+         //    url: "Posts/Search/{searchString}",
+         //    defaults: new { controller = "Posts", action = "Index", id = "{searchString}" }
+         //);
+
+         //   routes.MapRoute(
+         //        name: "SearchID",
+         //        url: "Posts/Search/{searchID}",
+         //        defaults: new { controller = "Posts", action = "Index", id = "{searchID}" }
+         //);
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
