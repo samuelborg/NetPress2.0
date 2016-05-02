@@ -20,18 +20,55 @@ namespace NetPress.Controllers
         [AllowAnonymous]
         // GET: Post
 
-        public ActionResult Index(string searchString, string searchID)
+        //public ActionResult Index(string searchString, string searchID)
+        //{
+        //    IList<Posts> posts = db.Posts.ToList();
+
+        //    posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
+
+
+        //    if(searchString!= null)
+        //    {
+        //        posts = posts.Where(p => p.category.Contains(searchString)).ToList();
+           
+        //    }
+        //    if (searchID != null)
+        //    {
+        //        posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
+
+        //    }
+
+        //    return View(posts);
+        //}
+
+
+        public ActionResult Index()
+        {
+            return View(db.Posts.ToList());
+        }
+        [AllowAnonymous]
+        public ActionResult SearchCategory(string searchString)
         {
             IList<Posts> posts = db.Posts.ToList();
 
             posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
 
 
-            if(searchString!= null)
+            if (searchString != null)
             {
                 posts = posts.Where(p => p.category.Contains(searchString)).ToList();
-           
+
             }
+
+            return View(posts);
+        }
+        [AllowAnonymous]
+        public ActionResult SearchID(string searchID)
+        {
+            IList<Posts> posts = db.Posts.ToList();
+
+            posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
+
             if (searchID != null)
             {
                 posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
@@ -40,12 +77,6 @@ namespace NetPress.Controllers
 
             return View(posts);
         }
-
-
-        //public ActionResult Index()
-        //{
-        //    return View(db.Posts.ToList());
-        //}
 
         // GET: Post/Details/5
         [AllowAnonymous]
