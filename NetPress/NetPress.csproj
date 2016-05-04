@@ -349,8 +349,9 @@
     <Content Include="Views\Shared\_Posts.cshtml" />
     <Content Include="Views\Shared\_Admin.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
-    <Content Include="Views\Posts\SearchCategory.cshtml" />
-    <Content Include="Views\Posts\SearchID.cshtml" />
+    <Content Include="Views\Posts\Search.cshtml" />
+    <Content Include="Views\Posts\Manage.cshtml" />
+    <Content Include="Views\Shared\_VerticalAdminBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

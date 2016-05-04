@@ -19,65 +19,61 @@ namespace NetPress.Controllers
 
         [AllowAnonymous]
         // GET: Post
-
-        //public ActionResult Index(string searchString, string searchID)
-        //{
-        //    IList<Posts> posts = db.Posts.ToList();
-
-        //    posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
-
-
-        //    if(searchString!= null)
-        //    {
-        //        posts = posts.Where(p => p.category.Contains(searchString)).ToList();
-           
-        //    }
-        //    if (searchID != null)
-        //    {
-        //        posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
-
-        //    }
-
-        //    return View(posts);
-        //}
-
-
         public ActionResult Index()
-        {
-            return View(db.Posts.ToList());
-        }
-        [AllowAnonymous]
-        public ActionResult SearchCategory(string searchString)
         {
             IList<Posts> posts = db.Posts.ToList();
 
             posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
 
+            return View(posts);
+        }
+
+        [AllowAnonymous]
+        public ActionResult Search(string searchString,string searchID)
+        {
+            IList<Posts> posts = db.Posts.ToList();
+
+            posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
 
             if (searchString != null)
             {
                 posts = posts.Where(p => p.category.Contains(searchString)).ToList();
-
             }
-
-            return View(posts);
-        }
-        [AllowAnonymous]
-        public ActionResult SearchID(string searchID)
-        {
-            IList<Posts> posts = db.Posts.ToList();
-
-            posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
-
             if (searchID != null)
             {
                 posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
-
             }
-
             return View(posts);
         }
 
+        public ActionResult Manage(string contentStatus)
+        {
+            IList<Posts> posts = db.Posts.ToList();
+
+            //get authenticated user id and filter
+            posts = posts.Where(p => p.UserID.Equals(User.Identity.GetUserId())).ToList();
+
+            switch (contentStatus)
+            {
+                case "Published":
+                    posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
+                    break;
+
+                case "Draft":
+                    posts = posts.Where(p => p.status.Equals(Posts.Status.Draft)).ToList();
+                    break;
+
+                case "Archived":
+                    posts = posts.Where(p => p.status.Equals(Posts.Status.Archived)).ToList();
+                    break;
+                default:
+
+                    break;
+
+            };
+
+            return View(posts);
+        }
         // GET: Post/Details/5
         [AllowAnonymous]
         public ActionResult Details(int? id)
@@ -155,7 +151,7 @@ namespace NetPress.Controllers
                 posts.lastModified = DateTime.Now;
                 db.Entry(posts).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Manage");
             }
             return View(posts);
         }
@@ -183,7 +179,7 @@ namespace NetPress.Controllers
             Posts posts = db.Posts.Find(id);
             db.Posts.Remove(posts);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Manage");
         }
 
         protected override void Dispose(bool disposing)

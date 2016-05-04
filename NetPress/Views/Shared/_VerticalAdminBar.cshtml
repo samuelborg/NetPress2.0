@@ -1,0 +1,40 @@
+﻿@if (Request.IsAuthenticated)
+            {
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+            <li class="active">
+                <a href='@Url.Action("Manage","Posts")'><i class="fa fa-fw fa-home"></i> Dashboard</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-fw fa-pencil-square-o"></i> Create Post</a>
+            </li>
+            <li>
+                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-folder-o"></i> Your Posts <i class="fa fa-fw fa-caret-down"></i></a>
+                <ul id="demo" class="collapse">
+                    <li>
+                        <a href='@Url.Action("Manage", "Posts", new { contentStatus = "Draft" })'>Draft Posts</a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Manage", "Posts", new { contentStatus = "Published" })'>Published Posts</a>
+                    </li>
+                    <li>
+                        <a href='@Url.Action("Manage", "Posts", new { contentStatus = "Archived" })'>Archived Posts</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href='@Url.Action("ChangePassword","Manage")'><i class="fa fa-fw fa-key"></i> Change Password</a>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav side-nav">
+            <li class="active">
+                <a href="#"><i class="fa fa-fw fa-home"></i> Log In</a>
+            </li>
+        </ul>
+    </div>
+}

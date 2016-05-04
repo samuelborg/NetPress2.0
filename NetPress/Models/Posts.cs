@@ -28,7 +28,7 @@ namespace NetPress.Models
         {
             Published = 0,
             Draft = 1,
-            Unpublished = 2
+            Archived = 2
         }
 
         [Required(ErrorMessage = "This field is required.")]
