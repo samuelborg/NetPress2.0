@@ -5,9 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 
-namespace NetPress.Models
+namespace NetPress.ViewModels
 {
-    public class Posts
+    public class ViewPosts
     {
         [Key]
         [Display(Name = "Post ID")]
@@ -24,17 +24,6 @@ namespace NetPress.Models
         [Display(Name = "Category")]
         public string category { get; set; }
 
-        public enum Status
-        {
-            Published = 0,
-            Draft = 1,
-            Unpublished = 2
-        }
-
-        [Required(ErrorMessage = "This field is required.")]
-        [Display(Name = "Status")]
-        public Status status { get; set; }
-
         [Display(Name = "Date Created")]
         public DateTime? dateCreated { get; set; }
 
@@ -43,5 +32,8 @@ namespace NetPress.Models
 
         [Display(Name = "Author")]
         public string UserID { get; set; }
+
+        [Display(Name = "Author")]
+        public string UserFullName { get; set; }
     }
 }

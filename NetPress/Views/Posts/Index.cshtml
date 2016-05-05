@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NetPress.Models.Posts>
+﻿@model IEnumerable<NetPress.ViewModels.ViewPosts>
 
 @{
     ViewBag.Title = "Index";
@@ -12,21 +12,18 @@
 <hr style="margin-top: 20px;margin-bottom: 20px;border: 0;border-top: 2px solid #000;">
 @foreach (var item in Model)
 {
-    ViewBag.Null = null;
-    ViewBag.ID = item.UserID;
-    ViewBag.Category = item.category;
-    <h2>
+        <h2>
         <a href="#">@Html.DisplayFor(modelItem => item.title)</a>
     </h2>
     <p class="lead">
-        by @Html.ActionLink((string)ViewBag.ID, "SearchID", "Posts", new { searchID = ViewBag.ID },null)
+        by @Html.ActionLink((string)item.UserFullName, "SearchID", "Posts", new { searchID = ViewBag.ID },null)
     </p>
         <p><span class="glyphicon glyphicon-time"></span> Last edited on @Html.DisplayFor(modelItem => item.lastModified)</p>
                 <hr>
-                <p>@Html.DisplayFor(modelItem => item.content)</p>
+                @Html.Raw(item.content)
                 <hr>
                 <p>
-                    @Html.DisplayNameFor(model => model.category) : @Html.ActionLink((string)ViewBag.Category, "SearchCategory","Posts",new {searchString = ViewBag.Category },null)
+                @Html.DisplayNameFor(model => model.category) : @Html.ActionLink(item.category, "SearchCategory","Posts",new {searchString = item.category },null)
                 </p>
                 <hr style="margin-top: 20px;margin-bottom: 20px;border: 0;border-top: 2px solid #000;">
 }

@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using NetPress.Models;
 using Microsoft.AspNet.Identity;
+using NetPress.ViewModels;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace NetPress.Controllers
 {
@@ -21,7 +23,7 @@ namespace NetPress.Controllers
         // GET: Post
 
         //public ActionResult Index(string searchString, string searchID)
-        //{
+        //{ 
         //    IList<Posts> posts = db.Posts.ToList();
 
         //    posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
@@ -34,7 +36,7 @@ namespace NetPress.Controllers
         //    }
         //    if (searchID != null)
         //    {
-        //        posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
+        //       posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
 
         //    }
 
@@ -44,8 +46,30 @@ namespace NetPress.Controllers
 
         public ActionResult Index()
         {
-            return View(db.Posts.ToList());
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var posts = db.Posts.Where(p => p.status == Posts.Status.Published).ToList();
+            var model = new List<ViewPosts>();
+
+            foreach(var p in posts)
+            {
+                var author = manager.FindById(p.UserID);
+                model.Add(
+                    new ViewPosts()
+                    {
+                        category = p.category,
+                        UserFullName = author.Name + " " +author.Surname,
+                        content = p.content,
+                        dateCreated = p.dateCreated,
+                        postID = p.postID,
+                        title = p.title,
+                        UserID = p.UserID,
+                        lastModified = p.lastModified
+                    });
+            }
+
+            return View(model);
         }
+
         [AllowAnonymous]
         public ActionResult SearchCategory(string searchString)
         {
