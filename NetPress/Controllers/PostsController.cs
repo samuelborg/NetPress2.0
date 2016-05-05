@@ -44,29 +44,22 @@ namespace NetPress.Controllers
         //}
 
 
-        public ActionResult Index()
+        public ActionResult Index(string searchString, string searchID)
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var posts = db.Posts.Where(p => p.status == Posts.Status.Published).ToList();
             var model = new List<ViewPosts>();
 
-            foreach(var p in posts)
-            {
-                var author = manager.FindById(p.UserID);
-                model.Add(
-                    new ViewPosts()
-                    {
-                        category = p.category,
-                        UserFullName = author.Name + " " +author.Surname,
-                        content = p.content,
-                        dateCreated = p.dateCreated,
-                        postID = p.postID,
-                        title = p.title,
-                        UserID = p.UserID,
-                        lastModified = p.lastModified
-                    });
-            }
+            //if (searchString != null)
+            //{
+            //    posts = posts.Where(p => p.category.Contains(searchString)).ToList();
 
+            //}
+
+            //if (searchID != null)
+            //{
+            //    posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
+            //}
             return View(model);
         }
 
@@ -74,6 +67,8 @@ namespace NetPress.Controllers
         public ActionResult SearchCategory(string searchString)
         {
             IList<Posts> posts = db.Posts.ToList();
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var model = new List<ViewPosts>();
 
             posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
 
@@ -84,12 +79,31 @@ namespace NetPress.Controllers
 
             }
 
+            foreach (var p in posts)
+            {
+                var author = manager.FindById(p.UserID);
+                model.Add(
+                    new ViewPosts()
+                    {
+                        category = p.category,
+                        UserFullName = author.Name + " " + author.Surname,
+                        content = p.content,
+                        dateCreated = p.dateCreated,
+                        postID = p.postID,
+                        title = p.title,
+                        UserID = p.UserID,
+                        lastModified = p.lastModified
+                    });
+            }
+
             return View(posts);
         }
         [AllowAnonymous]
         public ActionResult SearchID(string searchID)
         {
             IList<Posts> posts = db.Posts.ToList();
+                        var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var model = new List<ViewPosts>();
 
             posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
 
@@ -97,6 +111,23 @@ namespace NetPress.Controllers
             {
                 posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
 
+            }
+
+            foreach (var p in posts)
+            {
+                var author = manager.FindById(p.UserID);
+                model.Add(
+                    new ViewPosts()
+                    {
+                        category = p.category,
+                        UserFullName = author.Name + " " + author.Surname,
+                        content = p.content,
+                        dateCreated = p.dateCreated,
+                        postID = p.postID,
+                        title = p.title,
+                        UserID = p.UserID,
+                        lastModified = p.lastModified
+                    });
             }
 
             return View(posts);

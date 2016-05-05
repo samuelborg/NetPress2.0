@@ -51,48 +51,8 @@
             <!-- Top Menu Items -->
             @Html.Partial("_Navbar")
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            @if (Request.IsAuthenticated)
-            {
+            @Html.Partial("_VerticalAdminBar")
 
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a href="#"><i class="fa fa-fw fa-home"></i> Dashboard</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-pencil-square-o"></i> Create Post</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-folder-o"></i> Your Posts <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
-                            <li>
-                                <a href="#">Draft Posts</a>
-                            </li>
-                            <li>
-                                <a href="#">Published Posts</a>
-                            </li>
-                            <li>
-                                <a href="#">Archived Posts</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="blank-page.html"><i class="fa fa-fw fa-key"></i> Change Password</a>
-                    </li>
-                </ul>
-            </div>
-            }
-            else
-            {
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav side-nav">
-                        <li class="active">
-                            <a href="#"><i class="fa fa-fw fa-home"></i> Log In</a>
-                        </li>
-                    </ul>
-                </div>
-
-            }
             <!-- /.navbar-collapse -->
         </nav>
 

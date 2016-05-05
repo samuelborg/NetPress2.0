@@ -12,7 +12,7 @@
 <hr style="margin-top: 20px;margin-bottom: 20px;border: 0;border-top: 2px solid #000;">
 @foreach (var item in Model)
 {
-        <h2>
+    <h2>
         <a href="#">@Html.DisplayFor(modelItem => item.title)</a>
     </h2>
     <p class="lead">
@@ -27,66 +27,3 @@
                 </p>
                 <hr style="margin-top: 20px;margin-bottom: 20px;border: 0;border-top: 2px solid #000;">
 }
-
-@*
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.category)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dateCreated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastModified)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserID)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-              <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.title)
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.content)
-                </td>*@
- @*          <td>
-                @Html.DisplayFor(modelItem => item.category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.dateCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lastModified)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.postID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.postID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.postID })
-            </td>
-        </tr>
-    }
-
-</table>
-     *@
-
