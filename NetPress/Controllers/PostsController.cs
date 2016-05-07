@@ -50,16 +50,36 @@ namespace NetPress.Controllers
             var posts = db.Posts.Where(p => p.status == Posts.Status.Published).ToList();
             var model = new List<ViewPosts>();
 
-            //if (searchString != null)
-            //{
-            //    posts = posts.Where(p => p.category.Contains(searchString)).ToList();
+            if (searchString != null)
+            {
+                posts = posts.Where(p => p.category.Contains(searchString)).ToList();
 
-            //}
+            }
 
-            //if (searchID != null)
-            //{
-            //    posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
-            //}
+            if (searchID != null)
+            {
+                posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
+            }
+
+            posts.OrderByDescending(p => p.dateCreated);
+
+            foreach (var p in posts)
+            {
+                var author = manager.FindById(p.UserID);
+                model.Add(
+                    new ViewPosts()
+                    {
+                        category = p.category,
+                        UserFullName = author.Name + " " + author.Surname,
+                        content = p.content,
+                        dateCreated = p.dateCreated,
+                        postID = p.postID,
+                        title = p.title,
+                        UserID = p.UserID,
+                        lastModified = p.lastModified
+                    });
+            }
+
             return View(model);
         }
 
