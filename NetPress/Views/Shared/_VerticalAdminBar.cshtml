@@ -6,7 +6,7 @@
                 <a href='@Url.Action("Manage","Posts")'><i class="fa fa-fw fa-home"></i> Dashboard</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-pencil-square-o"></i> Create Post</a>
+                <a href='@Url.Action("Create", "Posts", new { contentStatus = "Draft" })'><i class="fa fa-fw fa-pencil-square-o"></i> Create Post</a>
             </li>
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-folder-o"></i> Your Posts <i class="fa fa-fw fa-caret-down"></i></a>
