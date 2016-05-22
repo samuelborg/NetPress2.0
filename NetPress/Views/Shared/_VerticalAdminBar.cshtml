@@ -2,11 +2,13 @@
             {
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav side-nav">
-            <li class="active">
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Manage" ? "active" : "")">
+            @*<li class="active">*@
                 <a href='@Url.Action("Manage","Posts")'><i class="fa fa-fw fa-home"></i> Dashboard</a>
             </li>
-            <li>
-                <a href='@Url.Action("Create", "Posts", new { contentStatus = "Draft" })'><i class="fa fa-fw fa-pencil-square-o"></i> Create Post</a>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "")">
+                @*<li>*@
+                <a href='@Url.Action("Create", "Posts")'><i class="fa fa-fw fa-pencil-square-o"></i> Create Post</a>
             </li>
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-folder-o"></i> Your Posts <i class="fa fa-fw fa-caret-down"></i></a>
@@ -22,7 +24,8 @@
                     </li>
                 </ul>
             </li>
-            <li>
+            <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ChangePassword" ? "active" : "")">
+                @*<li>*@
                 <a href='@Url.Action("ChangePassword","Manage")'><i class="fa fa-fw fa-key"></i> Change Password</a>
             </li>
         </ul>
