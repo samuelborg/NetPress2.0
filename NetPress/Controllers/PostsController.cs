@@ -20,48 +20,16 @@ namespace NetPress.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         [AllowAnonymous]
-        // GET: Post
-
-        //public ActionResult Index(string searchString, string searchID)
-        //{ 
-        //    IList<Posts> posts = db.Posts.ToList();
-
-        //    posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
-
-
-        //    if(searchString!= null)
-        //    {
-        //        posts = posts.Where(p => p.category.Contains(searchString)).ToList();
-           
-        //    }
-        //    if (searchID != null)
-        //    {
-        //       posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
-
-        //    }
-
-        //    return View(posts);
-        //}
-
-
-        public ActionResult Index(string searchString, string searchID)
+        public ActionResult Index()
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            var posts = db.Posts.Where(p => p.status == Posts.Status.Published).ToList();
-            var model = new List<ViewPosts>();
 
-            if (searchString != null)
-            {
-                posts = posts.Where(p => p.category.Contains(searchString)).ToList();
+            IList<Posts> posts = db.Posts.ToList();
 
-            }
-
-            if (searchID != null)
-            {
-                posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
-            }
-
+            posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
             posts.OrderByDescending(p => p.dateCreated);
+
+            var model = new List<ViewPosts>();
 
             foreach (var p in posts)
             {
@@ -81,6 +49,70 @@ namespace NetPress.Controllers
             }
 
             return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult Search(string searchString, string searchID)
+        {
+            IList<Posts> posts = db.Posts.ToList();
+            posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
+
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var model = new List<ViewPosts>();
+            if (searchString != null)
+            {
+                posts = posts.Where(p => p.category.Contains(searchString)).ToList();
+            }
+            if (searchID != null)
+            {
+                posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
+            }
+            foreach (var p in posts)
+            {
+                var author = manager.FindById(p.UserID);
+                model.Add(
+                    new ViewPosts()
+                    {
+                        category = p.category,
+                        UserFullName = author.Name + " " + author.Surname,
+                        content = p.content,
+                        dateCreated = p.dateCreated,
+                        postID = p.postID,
+                        title = p.title,
+                        UserID = p.UserID,
+                        lastModified = p.lastModified
+                    });
+            }
+            return View(model);
+        }
+
+        public ActionResult Manage(string contentStatus)
+        {
+            IList<Posts> posts = db.Posts.ToList();
+
+            //get authenticated user id and filter
+            posts = posts.Where(p => p.UserID.Equals(User.Identity.GetUserId())).ToList();
+
+            switch (contentStatus)
+            {
+                case "Published":
+                    posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
+                    break;
+
+                case "Draft":
+                    posts = posts.Where(p => p.status.Equals(Posts.Status.Draft)).ToList();
+                    break;
+
+                case "Archived":
+                    posts = posts.Where(p => p.status.Equals(Posts.Status.Archived)).ToList();
+                    break;
+                default:
+
+                    break;
+
+            };
+
+            return View(posts);
         }
 
         // GET: Post/Details/5
