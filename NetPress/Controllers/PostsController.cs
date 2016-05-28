@@ -90,8 +90,9 @@ namespace NetPress.Controllers
         {
             IList<Posts> posts = db.Posts.ToList();
 
+            if(!User.IsInRole("Admin"))
             //get authenticated user id and filter
-            posts = posts.Where(p => p.UserID.Equals(User.Identity.GetUserId())).ToList();
+                posts = posts.Where(p => p.UserID.Equals(User.Identity.GetUserId())).ToList();
 
             switch (contentStatus)
             {

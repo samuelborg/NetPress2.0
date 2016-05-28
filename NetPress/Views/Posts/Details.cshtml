@@ -1,71 +1,50 @@
 ﻿@model NetPress.Models.Posts
-
 @{
     ViewBag.Title = "Details";
 }
 
-<h1 class="page-header">@Html.DisplayFor(model => model.title)</h1>
-<div class="panel panel-default">
-    <div class="panel-body">
-    <div>
-        @*<h4>Posts</h4>
-        <hr />
-        <dl class="dl-horizontal">*@
-            <dd>
-                @Html.Raw(Model.content)
-            </dd>
-            @*<dt>
-                @Html.DisplayNameFor(model => model.category)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.category)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.status)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.status)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.dateCreated)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.dateCreated)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.lastModified)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.lastModified)
-            </dd>
-            <dt>
-                @Html.DisplayNameFor(model => model.UserID)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.UserID)
-            </dd>
-        </dl>*@
-        </div>
-    </div>
-    <div class="panel-footer">
-        <dt><b><span class="glyphicon glyphicon-tag"></span>&nbsp;Category:</b></dt><dd>
-    &nbsp;@Html.DisplayFor(model => model.category)
-</dd><dt><b><span class="glyphicon glyphicon-file"></span>&nbsp;Status:</b></dt>
-        <dd>
-            &nbsp;@Html.DisplayFor(model => model.status)
-        </dd><dt><b><span class="glyphicon glyphicon-time"></span>&nbsp;Date Created:</b></dt>
-        <dd>
-            &nbsp;@Html.DisplayFor(model => model.dateCreated)
-        </dd><dt>
-            <b><span class="glyphicon glyphicon-time"></span>&nbsp;Last Modified:</b>
-            </dt>
-        <dd>
-            &nbsp;@Html.DisplayFor(model => model.lastModified)
-        </dd><dt><b><span class="glyphicon glyphicon-user"></span>&nbsp;Author ID:</b></dt>&nbsp;@Html.DisplayFor(model => model.UserID)
+<h1 class="page-header" style="margin-bottom:4px;border-bottom: 3px solid #4f3131;">
+    @Html.DisplayFor(model => model.title)
 
+</h1>
+@*<h4 style="margin-left:4%">by @Html.DisplayFor(model => model.UserID)</h4>*@
+<p>
+    by <strong>e98767f2-5120-4301-8a4f-fc62a09683db</strong>
+    <strong>
+        <span style="font-size:1.50em"> |</span>&nbsp;</strong>Category: <strong>@Html.DisplayFor(model => model.category)</strong>
+</p>
+
+
+<div class="panel panel-default" style="padding-left: 10px; padding-top: 5px; padding-right: 10px;">
+    @Html.Raw(Model.content)
 </div>
+
+<div class="panel panel-default">
+    @*<div class="panel-body">
+
+        </div>*@
+    <div class="panel-footer">
+      
+        <b><span class="glyphicon glyphicon-file"></span>&nbsp;Status:</b>
+
+        &nbsp;@Html.DisplayFor(model => model.status)
+
+        <p></p>
+        <b><span class="glyphicon glyphicon-time"></span>&nbsp;Date Created:</b>
+
+        &nbsp;@Html.DisplayFor(model => model.dateCreated)
+
+        <p></p>
+        <b><span class="glyphicon glyphicon-time"></span>&nbsp;Last Modified:</b>
+
+        &nbsp;@Html.DisplayFor(model => model.lastModified)
+
     </div>
-    <p>
+</div>
+
+
+
+@*<p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.postID }) |
         @Html.ActionLink("Back to List", "Index")
-    </p>
+    </p>*@

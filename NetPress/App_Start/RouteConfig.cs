@@ -14,7 +14,7 @@ namespace NetPress
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-             name: "SearchCategory",
+             name: "Search",
              url: "Posts/Search/{searchString}",
              defaults: new { controller = "Posts", action = "Search", id = "{searchString}" }
             );

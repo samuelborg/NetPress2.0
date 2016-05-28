@@ -17,11 +17,10 @@
             <h2>
                 <b>
                     @Html.ActionLink((string)item.title, "Details", "Posts", new { id = item.postID }, null)
-                    @*<a href="/Posts/Details/">@Html.DisplayFor(modelItem => item.title)</a>*@
                 </b>
             </h2>
             <p class="lead">
-                by @Html.ActionLink((string)item.UserFullName, "SearchID", "Posts", new { searchID = ViewBag.ID }, null)
+                by @Html.ActionLink((string)item.UserFullName, "Search", "Posts", new { searchID = item.UserID }, null)
             </p>
             <p><span class="glyphicon glyphicon-time"></span> Last edited on @Html.DisplayFor(modelItem => item.lastModified)</p>
 
@@ -32,7 +31,7 @@
             </div>
         <div class="panel-footer">
             <p>
-                @Html.DisplayNameFor(model => model.category) : @Html.ActionLink(item.category, "SearchCategory", "Posts", new { searchString = item.category }, null)
+                @Html.DisplayNameFor(model => model.category) : @Html.ActionLink(item.category, "Search", "Posts", new { searchString = item.category }, null)
             </p>
         </div>
         </div>
