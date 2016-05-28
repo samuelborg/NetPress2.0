@@ -52,21 +52,21 @@ namespace NetPress.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Search(string searchString, string searchID)
+        public ActionResult SearchCategory(string searchString)
         {
             IList<Posts> posts = db.Posts.ToList();
-            posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
-
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var model = new List<ViewPosts>();
+
+            posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
+
+
             if (searchString != null)
             {
                 posts = posts.Where(p => p.category.Contains(searchString)).ToList();
+
             }
-            if (searchID != null)
-            {
-                posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
-            }
+
             foreach (var p in posts)
             {
                 var author = manager.FindById(p.UserID);
@@ -83,34 +83,40 @@ namespace NetPress.Controllers
                         lastModified = p.lastModified
                     });
             }
-            return View(model);
-        }
 
-        public ActionResult Manage(string contentStatus)
+            return View(posts);
+        }
+        [AllowAnonymous]
+        public ActionResult SearchID(string searchID)
         {
             IList<Posts> posts = db.Posts.ToList();
+                        var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var model = new List<ViewPosts>();
 
-            //get authenticated user id and filter
-            posts = posts.Where(p => p.UserID.Equals(User.Identity.GetUserId())).ToList();
+            posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
 
-            switch (contentStatus)
+            if (searchID != null)
             {
-                case "Published":
-                    posts = posts.Where(p => p.status.Equals(Posts.Status.Published)).ToList();
-                    break;
+                posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
 
-                case "Draft":
-                    posts = posts.Where(p => p.status.Equals(Posts.Status.Draft)).ToList();
-                    break;
+            }
 
-                case "Archived":
-                    posts = posts.Where(p => p.status.Equals(Posts.Status.Archived)).ToList();
-                    break;
-                default:
-
-                    break;
-
-            };
+            foreach (var p in posts)
+            {
+                var author = manager.FindById(p.UserID);
+                model.Add(
+                    new ViewPosts()
+                    {
+                        category = p.category,
+                        UserFullName = author.Name + " " + author.Surname,
+                        content = p.content,
+                        dateCreated = p.dateCreated,
+                        postID = p.postID,
+                        title = p.title,
+                        UserID = p.UserID,
+                        lastModified = p.lastModified
+                    });
+            }
 
             return View(posts);
         }
