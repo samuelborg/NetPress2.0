@@ -17,31 +17,34 @@ namespace NetPress.Migrations
 
         protected override void Seed(NetPress.Models.ApplicationDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-
+            //CREATE ROLES
             context.Roles.AddOrUpdate(r => r.Name,
-                new IdentityRole { Name = "Admin" },
-                new IdentityRole { Name = "Author" }
-                );
+               new IdentityRole { Name = "Admin" },
+               new IdentityRole { Name = "Author" }
+               );
 
-            //context.Users.AddOrUpdate(u => u.Id,
-            //   new Models.ApplicationUser { Id="1",Email = "matxuereb@hotmail.co.uk",Name="Matthew",Surname="Xuereb",MemberSince=DateTime.Now,PasswordHash="Hello"}
-            //   );
-                
-                
-            //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            //UserManager.AddToRole("1","Admin");
+            //CREATE DEAFULT ADMIN
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+          //  var RoleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            string email = "admin@netpress.com";
+            string name = "Boss";
+            string surname = "Ross";
+            string password = "likeabaws";
+
+            var adminUser = new ApplicationUser {
+                UserName = email, Email = email, Name = name, Surname = surname,
+                MemberSince = DateTime.Now };
+
+
+            var result = UserManager.Create(adminUser, password);
+            if (result.Succeeded)
+            {
+                UserManager.AddToRole(adminUser.Id, "Admin");
+              
+            }
+
+
         }
     }
 }
