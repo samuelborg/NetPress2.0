@@ -7,11 +7,11 @@
     @Html.DisplayFor(model => model.title)
 
 </h1>
-@*<h4 style="margin-left:4%">by @Html.DisplayFor(model => model.UserID)</h4>*@
 <p>
-    by <strong>e98767f2-5120-4301-8a4f-fc62a09683db</strong>
+    by <strong>@Html.DisplayFor(model => model.UserID)</strong>
     <strong>
-        <span style="font-size:1.50em"> |</span>&nbsp;</strong>Category: <strong>@Html.DisplayFor(model => model.category)</strong>
+        <span style="font-size:1.50em"> |</span>&nbsp;
+    </strong>Category: <strong>@Html.DisplayFor(model => model.category)</strong>
 </p>
 
 
@@ -20,11 +20,9 @@
 </div>
 
 <div class="panel panel-default">
-    @*<div class="panel-body">
-
-        </div>*@
+  
     <div class="panel-footer">
-      
+
         <b><span class="glyphicon glyphicon-file"></span>&nbsp;Status:</b>
 
         &nbsp;@Html.DisplayFor(model => model.status)
@@ -42,9 +40,3 @@
     </div>
 </div>
 
-
-
-@*<p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.postID }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@
