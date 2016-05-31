@@ -74,7 +74,7 @@ namespace NetPress.Controllers
            
             if (searchString != null)
             {  //User wants to filter by category
-                posts = posts.Where(p => p.category.Contains(searchString)).ToList();
+                posts = posts.Where(p => p.category.Equals(searchString,StringComparison.InvariantCultureIgnoreCase)).ToList();
             }
             if (searchID != null)
             {//User wants to filter by user ID
@@ -101,7 +101,7 @@ namespace NetPress.Controllers
                         lastModified = p.lastModified
                     });
             }
-            return View(model);
+            return View("Index",model);
         }
 
         /*
