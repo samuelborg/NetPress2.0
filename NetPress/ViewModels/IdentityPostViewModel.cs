@@ -7,7 +7,9 @@ using System.Web.Helpers;
 
 namespace NetPress.ViewModels
 {
-    public class ViewPosts
+    //This ViewModel is required everytime the full name of the author associated with a post is displayed
+    //i.e. in Index and Details views of posts
+    public class IdentityPostViewModel
     {
         [Key]
         [Display(Name = "Post ID")]
@@ -30,10 +32,10 @@ namespace NetPress.ViewModels
         [Display(Name = "Last Modified")]
         public DateTime? lastModified { get; set; }
 
-        [Display(Name = "Author")]
+        [Display(Name = "Author ID")]
         public string UserID { get; set; }
 
-        [Display(Name = "Author")]
+        [Display(Name = "Author Full Name")]
         public string UserFullName { get; set; }
     }
 }

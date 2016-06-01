@@ -1,0 +1,46 @@
+﻿@model  NetPress.ViewModels.IdentityPostViewModel
+@{
+    ViewBag.Title = "Details";
+    string userid = Model.UserID;
+}
+
+<h1 class="page-header" style="margin-bottom:4px;border-bottom: 3px solid #4f3131;">
+    @Html.DisplayFor(model => model.title)
+
+</h1>
+@*<h4 style="margin-left:4%">by @Html.DisplayFor(model => model.UserID)</h4>*@
+<p>
+    by @Html.DisplayFor(model => model.UserFullName)
+    <strong>
+        <span style="font-size:1.50em"> |</span>&nbsp;
+    </strong>Category: <strong>
+        @Html.DisplayFor(model => model.category)</strong>
+</p>
+
+
+<div class="panel panel-default" style="padding-left: 10px; padding-top: 5px; padding-right: 10px;">
+    @Html.Raw(Model.content)
+</div>
+
+<div class="panel panel-default">
+    @*<div class="panel-body">
+
+        </div>*@
+    <div class="panel-footer">
+
+        @*<b><span class="glyphicon glyphicon-file"></span>&nbsp;Status:</b>
+
+            &nbsp;@Html.DisplayFor(model => model.status)*@
+
+        <p></p>
+        <b><span class="glyphicon glyphicon-calendar"></span>&nbsp;Date Created:</b>
+
+        &nbsp;@Html.DisplayFor(model => model.dateCreated)
+
+        <p></p>
+        <b><span class="glyphicon glyphicon-time"></span>&nbsp;Last Modified:</b>
+
+        &nbsp;@Html.DisplayFor(model => model.lastModified)
+
+    </div>
+</div>

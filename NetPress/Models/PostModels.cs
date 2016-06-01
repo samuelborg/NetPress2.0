@@ -7,7 +7,7 @@ using System.Web.Helpers;
 
 namespace NetPress.Models
 {
-    public class Posts
+    public class PostModels
     {
         [Key]
         [Display(Name = "Post ID")]
@@ -36,10 +36,10 @@ namespace NetPress.Models
         public Status status { get; set; }
 
         [Display(Name = "Date Created")]
-        public DateTime? dateCreated { get; set; }
+        public DateTime dateCreated { get; set; }
 
         [Display(Name = "Last Modified")]
-        public DateTime? lastModified { get; set; }
+        public DateTime lastModified { get; set; }
 
         [Display(Name = "Author")]
         public string UserID { get; set; }

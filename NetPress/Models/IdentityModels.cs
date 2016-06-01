@@ -34,7 +34,7 @@ namespace NetPress.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<NetPress.Models.Posts> Posts { get; set; }
+        public System.Data.Entity.DbSet<NetPress.Models.PostModels> Posts { get; set; }
         public object Post { get; internal set; }
     }
 }

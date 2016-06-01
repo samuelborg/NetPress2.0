@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
-@model IEnumerable<NetPress.Models.Posts>
+@model IEnumerable<NetPress.Models.PostModels>
 @{
     ViewBag.Title = "Posts List";
 }
@@ -36,13 +36,13 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.title)
+                @Html.ActionLink((string)item.title, "Details", "Post", new { id = item.postID }, null)
             </td>
             <td >
                 @Html.Raw(item.content)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.category)
+                @Html.ActionLink(item.category, "Search", "Post", new { searchString = item.category }, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.status)

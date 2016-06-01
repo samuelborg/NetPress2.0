@@ -4,23 +4,23 @@
         <ul class="nav navbar-nav side-nav">
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Manage" ? "active" : "")">
          
-                <a href='@Url.Action("Manage","Posts")'><i class="fa fa-fw fa-home"></i> Dashboard</a>
+                <a href='@Url.Action("Manage","Post")'><i class="fa fa-fw fa-home"></i> Dashboard</a>
             </li>
             <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Create" ? "active" : "")">
               
-                <a href='@Url.Action("Create", "Posts")'><i class="fa fa-fw fa-pencil-square-o"></i> Create Post</a>
+                <a href='@Url.Action("Create", "Post")'><i class="fa fa-fw fa-pencil-square-o"></i> Create Post</a>
             </li>
             <li>
                 <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-folder-o"></i> Your Posts <i class="fa fa-fw fa-caret-down"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
-                        <a href='@Url.Action("Manage", "Posts", new { contentStatus = "Draft" })'>Draft Posts</a>
+                        <a href='@Url.Action("Manage", "Post", new { contentStatus = "Draft" })'>Draft Posts</a>
                     </li>
                     <li>
-                        <a href='@Url.Action("Manage", "Posts", new { contentStatus = "Published" })'>Published Posts</a>
+                        <a href='@Url.Action("Manage", "Post", new { contentStatus = "Published" })'>Published Posts</a>
                     </li>
                     <li>
-                        <a href='@Url.Action("Manage", "Posts", new { contentStatus = "Archived" })'>Archived Posts</a>
+                        <a href='@Url.Action("Manage", "Post", new { contentStatus = "Archived" })'>Archived Posts</a>
                     </li>
                 </ul>
             </li>

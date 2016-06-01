@@ -1,0 +1,38 @@
+﻿@model IEnumerable<NetPress.ViewModels.IdentityPostViewModel>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+@*<h2>Search</h2>*@
+
+<h1 class="page-header">Search results</h1>
+
+@foreach (var item in Model)
+{
+    <div class="panel panel-default" style="padding-top: 5px;">
+        <h2>
+            <b style="padding-left: 10px;">
+                @Html.ActionLink((string)item.title, "Details", "Post", new { id = item.postID }, null)
+                @*<a href="/Posts/Details/">@Html.DisplayFor(modelItem => item.title)</a>*@
+            </b>
+        </h2>
+        <p class="lead" style="padding-left: 10px;">
+            by @Html.ActionLink((string)item.UserFullName, "Search", "Post", new { searchID = item.UserID }, null)
+        </p>
+        <p><span style="padding-left: 10px;" class="glyphicon glyphicon-time"></span> Last edited on @Html.DisplayFor(modelItem => item.lastModified)</p>
+
+        <div class="panel-body">
+
+            @Html.Raw(item.content)
+
+        </div>
+        <div class="panel-footer">
+            <p>
+                @Html.DisplayNameFor(model => model.category) : @Html.ActionLink(item.category, "Search", "Post", new { searchString = item.category }, null)
+            </p>
+        </div>
+    </div>
+        
+
+}

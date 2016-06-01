@@ -15,8 +15,8 @@ namespace NetPress
 
             routes.MapRoute(
              name: "Search",
-             url: "Posts/Search/{searchString}",
-             defaults: new { controller = "Posts", action = "Search", id = "{searchString}" }
+             url: "Post/Search/{searchString}",
+             defaults: new { controller = "Post", action = "Search", id = "{searchString}" }
             );
 
             routes.MapRoute(

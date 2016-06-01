@@ -1,11 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
-@model NetPress.Models.Posts
-
-@{
-    ViewBag.Title = "Delete";
-}
+@model NetPress.Models.PostModels
 
 <h2>Delete</h2>
 
@@ -27,7 +23,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.content)
+            @Html.Raw(Model.content)
         </dd>
 
         <dt>
