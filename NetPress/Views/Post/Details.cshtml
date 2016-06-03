@@ -1,7 +1,6 @@
 ﻿@model  NetPress.ViewModels.IdentityPostViewModel
 @{
     ViewBag.Title = "Details";
-    string userid = Model.UserID;
 }
 
 <h1 class="page-header" style="margin-bottom:4px;border-bottom: 3px solid #4f3131;">
@@ -41,3 +40,6 @@
 
     </div>
 </div>
+<br />
+@Html.ActionLink("Back to Blog", "Index", null, new { @class = "btn btn-primary", @style = "color:white" })
+
