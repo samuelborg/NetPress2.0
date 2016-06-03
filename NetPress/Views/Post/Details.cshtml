@@ -8,9 +8,8 @@
     @Html.DisplayFor(model => model.title)
 
 </h1>
-@*<h4 style="margin-left:4%">by @Html.DisplayFor(model => model.UserID)</h4>*@
 <p>
-    by @Html.DisplayFor(model => model.UserFullName)
+    by <strong>@Html.DisplayFor(model => model.UserFullName)</strong>
     <strong>
         <span style="font-size:1.50em"> |</span>&nbsp;
     </strong>Category: <strong>
@@ -23,11 +22,9 @@
 </div>
 
 <div class="panel panel-default">
-    @*<div class="panel-body">
 
-        </div>*@
     <div class="panel-footer">
-
+      
         @*<b><span class="glyphicon glyphicon-file"></span>&nbsp;Status:</b>
 
             &nbsp;@Html.DisplayFor(model => model.status)*@

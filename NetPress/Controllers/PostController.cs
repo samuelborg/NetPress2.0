@@ -24,13 +24,18 @@ namespace NetPress.Controllers
         {
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
 
+            //Get all posts and store them in a list
             IList<PostModels> posts = db.Posts.ToList();
 
+            //Keep only the posts whose status is marked Published
             posts = posts.Where(p => p.status.Equals(PostModels.Status.Published)).ToList();
+
+            //Re-order the posts in descending order according to date created
             posts.OrderByDescending(p => p.dateCreated);
 
             var model = new List<IdentityPostViewModel>();
 
+            
             foreach (var p in posts)
             {
                 var author = manager.FindById(p.UserID);
@@ -51,20 +56,29 @@ namespace NetPress.Controllers
             return View(model);
         }
 
+        /*
+         *Search controller
+         * an take 2 values as parameters, 
+         * First for the category 
+         * Second for the ID of the user   
+             */
         [AllowAnonymous]
         public ActionResult Search(string searchString, string searchID)
         {
+            //Get all posts and store them in a list
+
+            //Keep only the posts whose status is marked Published
             IList<PostModels> posts = db.Posts.ToList();
             posts = posts.Where(p => p.status.Equals(PostModels.Status.Published)).ToList();
 
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
             var model = new List<IdentityPostViewModel>();
             if (searchString != null)
-            {
-                posts = posts.Where(p => p.category.Contains(searchString)).ToList();
+            {  //User wants to filter by category
+                posts = posts.Where(p => p.category.Equals(searchString,StringComparison.InvariantCultureIgnoreCase)).ToList();
             }
             if (searchID != null)
-            {
+            {//User wants to filter by user ID
                 posts = posts.Where(p => p.UserID.Equals(searchID)).ToList();
             }
             foreach (var p in posts)
@@ -83,17 +97,29 @@ namespace NetPress.Controllers
                         lastModified = p.lastModified
                     });
             }
-            return View(model);
+            return View("Index",model);
         }
 
+        /*
+         * Manage Controller
+         * Displays all the posts of the logged in user
+         * If user is Admin, display all posts by all users
+         * 
+         * Can filter posts by Status using the parameter
+       */
         public ActionResult Manage(string contentStatus)
         {
+            //Get all posts and store them in a list
             IList<PostModels> posts = db.Posts.ToList();
 
-            if (!User.IsInRole("Admin"))
+            //If user is of type Admin, get all posts made by all authors
+            //If normal user with role "Author", filter by the ID of the logged in user
+
+            if(!User.IsInRole("Admin"))
                 //get authenticated user id and filter
                 posts = posts.Where(p => p.UserID.Equals(User.Identity.GetUserId())).ToList();
 
+            //Get value of parameter and filter accordingly
             switch (contentStatus)
             {
                 case "Published":
